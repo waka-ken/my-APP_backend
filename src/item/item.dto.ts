@@ -1,39 +1,22 @@
-import { IsNotEmpty, IsString, IsOptional } from 'class-validator';
+import {
+    IsNotEmpty,
+    IsString,
+    IsOptional,
+    isNotEmpty,
+    IsBoolean,
+    IsNumber,
+} from 'class-validator';
+import { PrimaryColumn, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 export class CreateItemDTO {
-    // 空文字NG，string型指定
-    @IsNotEmpty()
-    @IsString()
-    todo: string;
+    // @PrimaryGeneratedColumn()
+    // id!: number;
 
-    @IsNotEmpty()
     @IsString()
-    limit: string;
+    todo!: string;
 
-    @IsNotEmpty()
-    @IsString()
-    deletePassword: string;
+    @IsBoolean()
+    done!: boolean;
 }
 
-export class UpdateItemDTO {
-    @IsOptional()
-    @IsNotEmpty()
-    @IsString()
-    todo: string;
-
-    @IsOptional()
-    @IsNotEmpty()
-    @IsString()
-    limit: string;
-
-    @IsOptional()
-    @IsNotEmpty()
-    @IsString()
-    isDone: string;
-}
-
-export class DeleteItemDTO {
-    @IsString()
-    @IsNotEmpty()
-    deletePassword: string;
-}
+export class DeleteItemDTO {}

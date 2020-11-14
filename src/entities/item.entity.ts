@@ -1,31 +1,13 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    CreateDateColumn,
-    UpdateDateColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Item {
     @PrimaryGeneratedColumn()
-    readonly id: number;
+    id: number;
 
     @Column()
     todo: string;
 
-    @Column('datetime')
-    limit: Date;
-
-    @Column('boolean', { default: false })
-    idDone: boolean;
-
-    @Column()
-    deletePassword: string;
-
-    @CreateDateColumn()
-    readonly createdAt?: Date;
-
-    @UpdateDateColumn()
-    readonly updatedAt?: Date;
+    @Column({ type: 'boolean', default: false })
+    done: boolean;
 }
