@@ -48,6 +48,10 @@ export class ItemService {
         return this.itemRepository.save(item);
     }
 
+    async deleteItem(id: number): Promise<DeleteResult> | null {
+        return await this.itemRepository.delete(id);
+    }
+
     // idを指定してテーブルから1件のデータを取得する関数を定義
     async find(id: number): Promise<Item> | null {
         return await this.itemRepository.findOne({ id: id });

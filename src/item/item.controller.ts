@@ -48,6 +48,11 @@ export class ItemController {
         return this.itemService.changeDone(id, createItemDTO);
     }
 
+    @Delete(':id')
+    async deleteItem(@Param('id') id:number): Promise<DeleteItemDTO>{
+        return this.itemService.deleteItem(id)
+    }
+
     // @Put(':id/update')
     // async update(
     //     @Param('id') id: string,
