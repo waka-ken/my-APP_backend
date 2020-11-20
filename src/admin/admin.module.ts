@@ -3,6 +3,6 @@ import { AdminService } from './admin.service';
 
 @Module({
 	providers: [AdminService],
-	exports: [AdminService],
+	exports: [AdminService]
 })
 export class AdminModule {}

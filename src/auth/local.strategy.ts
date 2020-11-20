@@ -16,4 +16,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
         }
         return user;
     }
+
+    // constructor(private moduleRef: ModuleRef) {
+    //     super({
+    //         passReqToCallback: true,
+    //     });
+    // }
 }

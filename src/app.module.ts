@@ -9,8 +9,14 @@ import { AuthModule } from './auth/auth.module';
 import { AdminService } from './admin/admin.service';
 
 @Module({
-    imports: [TypeOrmModule.forRoot(), ItemModule, UserModule, AdminModule, AuthModule],
+    imports: [
+        TypeOrmModule.forRoot(),
+        ItemModule,
+        UserModule,
+        AdminModule,
+        AuthModule,
+    ],
     controllers: [AppController],
-    providers: [AppService, AdminService],
+    providers: [AppService],
 })
 export class AppModule {}
