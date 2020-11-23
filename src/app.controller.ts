@@ -9,11 +9,13 @@ export class AppController {
 
     @UseGuards(AuthGuard('local'))
     @Post('auth/login')
-    async login(@Request() req) {
-        return this.authService.login(req.user);
+    async login(@Request() req: any) {
+        console.log('poe')
+        return this.authService.login(req.user)
+        // return req.user
     }
 
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(AuthGuard('jwt'))
     @Get('profile')
     getProfile(@Request() req) {
         return req.user;

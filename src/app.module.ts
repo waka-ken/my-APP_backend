@@ -7,6 +7,7 @@ import { UserModule } from './module/user/user.module';
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminService } from './admin/admin.service';
+import { Connection } from 'typeorm';
 
 @Module({
     imports: [
@@ -19,4 +20,7 @@ import { AdminService } from './admin/admin.service';
     controllers: [AppController],
     providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+    constructor(private readonly connection: Connection) {
+    }
+}

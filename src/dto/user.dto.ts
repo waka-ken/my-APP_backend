@@ -14,3 +14,11 @@ export class CreateUserDTO {
     @Column()
     age: number | null;
 }
+
+export class loginDTO {
+    @IsString()
+    name: string;
+
+    @IsString()
+    password: string;
+}
