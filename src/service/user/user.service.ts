@@ -8,14 +8,21 @@ import { CreateUserDTO } from 'src/dto/user.dto';
 
 @Injectable()
 export class UserService {
-
     constructor(
         @InjectRepository(User)
         private userRepository: Repository<User>,
     ) {}
 
     async findOne(name: string): Promise<User | undefined> {
-        return this.userRepository.findOne( name );
+        // const test: any = this.userRepository.findOne(name);
+        // test.then(val => {
+        //     console.log('aaaaa', val);
+        // });
+        return this.userRepository.findOne({
+            where: {
+                name,
+            },
+        });
         // return undefined;
     }
 
