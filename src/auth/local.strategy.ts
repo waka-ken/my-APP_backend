@@ -13,8 +13,9 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     }
 
     async validate(name: string, password: string): Promise<any> {
-        // console.log('poe')
+        console.log('poe')
         const user = await this.authService.validateUser(name, password);
+        console.log(user)
         if (!user) {
             throw new UnauthorizedException();
         }

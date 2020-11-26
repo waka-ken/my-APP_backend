@@ -33,6 +33,7 @@ export class AuthService {
 
     async login(user: User) {
         const payload = { name: user.name, id: user.id };
+        console.log('poe')
         return {
             access_token: this.jwtService.sign(payload),
         };

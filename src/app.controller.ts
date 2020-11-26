@@ -1,23 +1,25 @@
-import { Controller, UseGuards, Post, Request, Get } from '@nestjs/common';
+import { Controller, UseGuards, Post, Req, Get } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth/auth.service';
-import { JwtAuthGuard } from './auth/local-auth.guard';
+// import { Req } from 'express';
+import { User } from './entities/user.entity';
+import { LocalAuthGuard } from './auth/local-auth.guard';
+import { LoginResultDTO } from './auth/dto/login-Result.dto';
 
-@Controller()
+@Controller('auth')
 export class AppController {
     constructor(private authService: AuthService) {}
 
-    @UseGuards(AuthGuard('local'))
-    @Post('auth/login')
-    async login(@Request() req: any) {
-        console.log('poe')
-        return this.authService.login(req.user)
-        // return req.user
+    @Post('login')
+    @UseGuards(LocalAuthGuard)
+    async login(@Req() req){
+        console.log(req)
+        return this.authService.login(req.body as User)
     }
 
-    @UseGuards(AuthGuard('jwt'))
+    // @UseGuards(AuthGuard('jwt'))
     @Get('profile')
-    getProfile(@Request() req) {
+    getProfile(@Req() req) {
         return req.user;
     }
     // constructor(private readonly appService: AppService) {}

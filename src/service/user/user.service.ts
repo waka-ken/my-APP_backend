@@ -14,23 +14,28 @@ export class UserService {
     ) {}
 
     async findOne(name: string): Promise<User | undefined> {
-        // const test: any = this.userRepository.findOne(name);
-        // test.then(val => {
-        //     console.log('aaaaa', val);
-        // });
+        console.log('poe')
         return this.userRepository.findOne({
             where: {
                 name,
             },
         });
-        // return undefined;
+        // return  this.userRepository.findOne(user => user.name === name )
     }
 
     async findAll(): Promise<User[]> {
         return await this.userRepository.find();
     }
 
-    async addUser(account: CreateUserDTO): Promise<InsertResult> {
-        return await this.userRepository.insert(account);
+    async addUser(createUserDTO: CreateUserDTO): Promise<User> {
+
+        let user = new User({})
+        user.name = createUserDTO.name
+        // user.email = CreateUserDTO.email
+        user.password = ''
+
+        user = await this.userRepository.save(user)
+
+        return user
     }
 }
