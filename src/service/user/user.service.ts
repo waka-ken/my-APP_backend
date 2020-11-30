@@ -2,7 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { User } from '../../entities/user.entity';
 import { Repository, InsertResult } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserDTO } from 'src/dto/user.dto';
+import { CreateUserDTO } from '../../dto/user/user.dto';
+import { create } from 'domain';
+import { IsEmail } from 'class-validator';
 
 // export type User = any;
 
@@ -14,7 +16,7 @@ export class UserService {
     ) {}
 
     async findOne(name: string): Promise<User | undefined> {
-        console.log('poe')
+        console.log('poe');
         return this.userRepository.findOne({
             where: {
                 name,
@@ -28,14 +30,17 @@ export class UserService {
     }
 
     async addUser(createUserDTO: CreateUserDTO): Promise<User> {
+        let user = new User({});
+        user.name = createUserDTO.name;
+        user.email = createUserDTO.email;
+        user.age = createUserDTO.age;
+        user.password = '';
 
-        let user = new User({})
-        user.name = createUserDTO.name
-        // user.email = CreateUserDTO.email
-        user.password = ''
+        user = await this.userRepository.save(user);
 
-        user = await this.userRepository.save(user)
+        // IsEmail + password edit
 
-        return user
+        console.log('test', user);
+        return user;
     }
 }

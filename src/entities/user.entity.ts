@@ -1,9 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { IsEmail } from 'class-validator';
 
 @Entity()
 export class User {
     constructor(partial: Partial<User>) {
-        Object.assign(this, partial)
+        Object.assign(this, partial);
     }
 
     @PrimaryGeneratedColumn()
@@ -11,6 +12,9 @@ export class User {
 
     @Column()
     name: string;
+
+    @IsEmail()
+    email: string;
 
     @Column()
     password: string;

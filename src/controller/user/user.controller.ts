@@ -1,8 +1,9 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { UserService } from '../../service/user/user.service';
 import { User } from '../../entities/user.entity';
-import { CreateUserDTO } from 'src/dto/user.dto';
+import { CreateUserDTO } from 'src/dto/user/user.dto';
 import retryTimes = jest.retryTimes;
+import { CreateUserResponseDto } from '../../dto/user/create-user-response.dto';
 
 @Controller('user')
 export class UserController {
@@ -14,8 +15,8 @@ export class UserController {
     }
 
     @Post()
-    async signup(@Body() createUserDTO: CreateUserDTO): Promise<any> {
-        console.log('poe');
+    async signup(@Body() createUserDTO: CreateUserDTO): Promise<CreateUserResponseDto> {
+        // console.log('poe');
         return this.userService.addUser(createUserDTO);
     }
 
