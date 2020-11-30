@@ -1,5 +1,5 @@
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
-import { IsString } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 
 export class CreateUserDTO {
     @PrimaryGeneratedColumn()
@@ -8,8 +8,8 @@ export class CreateUserDTO {
     @IsString()
     name: string;
 
-    @IsString()
-    password: string;
+    @IsEmail()
+    email!: string;
 
     @Column()
     age: number | null;
